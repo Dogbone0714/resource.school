@@ -29,8 +29,16 @@ resource.school/
 │   └── public/
 │       └── sample-data.json   # 示例資料
 ├── backend/                    # FastAPI 後端專案
-│   ├── main.py                # 主應用程式
-│   └── requirements.txt       # Python 依賴
+│   ├── src/                   # 源碼目錄
+│   │   ├── controllers/       # 控制器
+│   │   ├── models/           # 資料庫模型
+│   │   ├── routes/           # 路由
+│   │   ├── services/         # 服務層
+│   │   ├── config.py         # 配置檔案
+│   │   └── main.py          # 主應用程式
+│   ├── ai.py                 # AI 推薦模組
+│   ├── main.py              # 向後兼容入口
+│   └── requirements.txt     # Python 依賴
 ├── docker-compose.yml         # Docker 容器配置
 └── README.md                 # 專案說明
 ```
@@ -84,13 +92,17 @@ npm run dev
 ## API 端點
 
 ### 認證
+- `POST /api/auth/register` - 用戶註冊
 - `POST /api/auth/login` - 用戶登入
+- `GET /api/auth/me` - 獲取當前用戶資訊
 
 ### 上傳
 - `POST /api/upload` - 上傳備審資料 JSON
+- `GET /api/uploads` - 獲取用戶上傳記錄
 
 ### 推薦
 - `GET /api/recommendation/{userId}` - 獲取學系推薦結果
+- `GET /api/recommendation/me/latest` - 獲取最新推薦結果
 
 ### 資源管理
 - `GET /resources` - 獲取資源列表
