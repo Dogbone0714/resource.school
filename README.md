@@ -17,10 +17,22 @@
 ## 專案結構
 ```
 resource.school/
-├── frontend/          # React 前端專案
-├── backend/           # FastAPI 後端專案
-├── docker-compose.yml # Docker 容器配置
-└── README.md         # 專案說明
+├── frontend/                    # React 前端專案
+│   ├── src/
+│   │   ├── pages/              # 頁面組件
+│   │   │   ├── LoginPage.jsx   # 登入頁面
+│   │   │   ├── UploadPage.jsx  # 上傳頁面
+│   │   │   └── ResultPage.jsx  # 結果頁面
+│   │   ├── components/         # 共用組件
+│   │   ├── services/           # API 服務
+│   │   └── App.tsx            # 主應用程式
+│   └── public/
+│       └── sample-data.json   # 示例資料
+├── backend/                    # FastAPI 後端專案
+│   ├── main.py                # 主應用程式
+│   └── requirements.txt       # Python 依賴
+├── docker-compose.yml         # Docker 容器配置
+└── README.md                 # 專案說明
 ```
 
 ## 快速開始
@@ -52,6 +64,39 @@ npm run dev
 - **本地開發**: 
   - 前端: http://localhost:3000
   - 後端: http://localhost:8000
+
+## 功能特色
+
+### 前端功能
+- 🔐 **用戶認證**: 登入/登出功能
+- 📤 **檔案上傳**: 支援 JSON 格式的備審資料上傳
+- 📊 **結果展示**: 顯示學系推薦結果和分析
+- 🎨 **響應式設計**: 使用 TailwindCSS 的現代化 UI
+- 🛡️ **路由保護**: 需要登入才能訪問上傳和結果頁面
+
+### 後端功能
+- 🔑 **JWT 認證**: 安全的用戶認證機制
+- 📁 **檔案處理**: 支援 JSON 檔案上傳和解析
+- 🤖 **推薦系統**: 基於上傳資料的學系推薦（目前為模擬數據）
+- 🗄️ **資料庫**: MySQL 儲存用戶、上傳記錄和推薦結果
+- 📚 **API 文檔**: 自動生成的 Swagger 文檔
+
+## API 端點
+
+### 認證
+- `POST /api/auth/login` - 用戶登入
+
+### 上傳
+- `POST /api/upload` - 上傳備審資料 JSON
+
+### 推薦
+- `GET /api/recommendation/{userId}` - 獲取學系推薦結果
+
+### 資源管理
+- `GET /resources` - 獲取資源列表
+- `POST /resources` - 建立新資源
+- `PUT /resources/{id}` - 更新資源
+- `DELETE /resources/{id}` - 刪除資源
 
 ## API 文檔
 後端啟動後，可訪問 http://localhost:8000/docs 查看 API 文檔

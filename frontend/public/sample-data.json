@@ -1,0 +1,31 @@
+{
+  "personal_info": {
+    "name": "張小明",
+    "age": 18,
+    "school": "台北市立建國高級中學"
+  },
+  "academic_scores": {
+    "chinese": 85,
+    "english": 92,
+    "math": 88,
+    "science": 90,
+    "social": 87
+  },
+  "interests": [
+    "程式設計",
+    "數學",
+    "物理",
+    "人工智慧"
+  ],
+  "achievements": [
+    "全國資訊競賽第三名",
+    "數學奧林匹亞初選通過",
+    "程式設計社團社長"
+  ],
+  "career_goals": "希望從事軟體開發或人工智慧相關工作",
+  "preferred_majors": [
+    "資訊工程",
+    "電機工程",
+    "數學系"
+  ]
+}

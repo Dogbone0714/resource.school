@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { ApiService, Resource } from '../services/api';
+import { ApiService } from '../services/api';
 
 export default function ResourceList() {
-  const [resources, setResources] = useState<Resource[]>([]);
+  const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     loadResources();
