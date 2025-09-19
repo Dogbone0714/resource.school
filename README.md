@@ -50,6 +50,11 @@ resource.school/
 docker-compose up -d
 ```
 
+### 資料庫配置
+- **資料庫名稱**: `hhkone_resourceschool`
+- **用戶名稱**: `hhkone_resourceschool`
+- **密碼**: `***`
+
 ### 手動啟動
 
 #### 後端
