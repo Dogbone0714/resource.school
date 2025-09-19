@@ -1,0 +1,54 @@
+# 依賴檔案
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 環境變數
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 建置輸出
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 作業系統
+.DS_Store
+Thumbs.db
+
+# 日誌
+*.log
+logs/
+
+# 資料庫
+*.db
+*.sqlite3
+
+# 快取
+.cache/
+.parcel-cache/
+
+# 測試覆蓋率
+coverage/
+.nyc_output/
+
+# 其他
+*.tmp
+*.temp

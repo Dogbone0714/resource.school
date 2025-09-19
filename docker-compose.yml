@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # MySQL 資料庫
+  mysql:
+    image: mysql:8.0
+    container_name: resource_school_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: resource_school
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - resource_school_network
+
+  # FastAPI 後端
+  backend:
+    build: ./backend
+    container_name: resource_school_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://appuser:apppassword@mysql:3306/resource_school
+    depends_on:
+      - mysql
+    volumes:
+      - ./backend:/app
+    networks:
+      - resource_school_network
+
+  # React 前端
+  frontend:
+    build: ./frontend
+    container_name: resource_school_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=https://api.morago.com.tw
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - resource_school_network
+
+volumes:
+  mysql_data:
+
+networks:
+  resource_school_network:
+    driver: bridge
