@@ -18,7 +18,7 @@ ALLOWED_FILE_TYPES = [".json"]
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://frontend:3000", 
-    "https://resouceschool.zeabur.app"
+    os.getenv("FRONTEND_URL", "https://resouceschool.zeabur.app")
 ]
 
 # 應用程式配置
