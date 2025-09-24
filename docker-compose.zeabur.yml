@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # FastAPI 後端
+  backend:
+    build: ./backend
+    container_name: resource_school_backend
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT@cgk1.clusters.zeabur.com:32188/zeabur
+      - SECRET_KEY=your-production-secret-key-change-this
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  # React 前端
+  frontend:
+    build: ./frontend
+    container_name: resource_school_frontend
+    environment:
+      - VITE_API_URL=https://resouceschool.zeabur.app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - backend

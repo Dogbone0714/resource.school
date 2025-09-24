@@ -1,0 +1,40 @@
+{
+  "name": "resource-school",
+  "services": [
+    {
+      "name": "backend",
+      "source": {
+        "type": "dockerfile",
+        "dockerfile": "backend/Dockerfile",
+        "context": "."
+      },
+      "env": {
+        "DATABASE_URL": "mysql+pymysql://root:0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT@cgk1.clusters.zeabur.com:32188/zeabur",
+        "SECRET_KEY": "your-production-secret-key-change-this"
+      },
+      "ports": [
+        {
+          "port": 8000,
+          "protocol": "http"
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "source": {
+        "type": "dockerfile",
+        "dockerfile": "frontend/Dockerfile",
+        "context": "."
+      },
+      "env": {
+        "VITE_API_URL": "https://resouceschool.zeabur.app"
+      },
+      "ports": [
+        {
+          "port": 3000,
+          "protocol": "http"
+        }
+      ]
+    }
+  ]
+}
