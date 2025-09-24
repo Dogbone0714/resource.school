@@ -2,7 +2,7 @@ import os
 from datetime import timedelta
 
 # 資料庫配置
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://hhkone_resourceschool:C7W7sTvpuwrWQ2v2GV28@localhost:3306/hhkone_resourceschool")
+DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT@cgk1.clusters.zeabur.com:32188/zeabur")
 
 # JWT 配置
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")

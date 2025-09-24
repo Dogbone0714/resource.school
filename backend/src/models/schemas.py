@@ -66,6 +66,30 @@ class RecommendationListResponse(BaseModel):
     total: int
     user_id: int
 
+# PDF 上傳相關 Schema
+class PDFUploadResponse(BaseModel):
+    message: str
+    upload_id: int
+    filename: str
+    page_count: int
+    word_count: int
+    processing_time: float
+    status: str
+    analysis_result: Dict[str, Any]
+
+class PDFUploadInfo(BaseModel):
+    id: int
+    filename: str
+    file_size: int
+    page_count: Optional[int] = None
+    word_count: Optional[int] = None
+    status: str
+    processing_time: Optional[float] = None
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
 # 資源相關 Schema
 class ResourceCreate(BaseModel):
     title: str

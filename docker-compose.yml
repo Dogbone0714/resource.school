@@ -1,22 +1,6 @@
 version: '3.8'
 
 services:
-  # MySQL 資料庫
-  mysql:
-    image: mysql:8.0
-    container_name: resource_school_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: hhkone_resourceschool
-      MYSQL_USER: hhkone_resourceschool
-      MYSQL_PASSWORD: C7W7sTvpuwrWQ2v2GV28
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - resource_school_network
-
   # FastAPI 後端
   backend:
     build: ./backend
@@ -24,9 +8,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://hhkone_resourceschool:C7W7sTvpuwrWQ2v2GV28@mysql:3306/hhkone_resourceschool
-    depends_on:
-      - mysql
+      - DATABASE_URL=mysql+pymysql://root:0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT@cgk1.clusters.zeabur.com:32188/zeabur
     volumes:
       - ./backend:/app
     networks:
@@ -45,9 +27,6 @@ services:
       - /app/node_modules
     networks:
       - resource_school_network
-
-volumes:
-  mysql_data:
 
 networks:
   resource_school_network:

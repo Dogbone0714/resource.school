@@ -15,31 +15,28 @@ from src.models.database import engine, Base
 from src.models import User, Resource, Upload, Recommendation
 
 def create_database():
-    """建立資料庫"""
+    """連接到 Zeabur MySQL 資料庫"""
     try:
-        # 連接到 MySQL 伺服器（不指定資料庫）
+        # 連接到 Zeabur MySQL 伺服器
         connection = pymysql.connect(
-            host='localhost',
+            host='cgk1.clusters.zeabur.com',
+            port=32188,
             user='root',
-            password='rootpassword',  # 使用 root 密碼
+            password='0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT',
+            database='zeabur',
             charset='utf8mb4'
         )
         
         with connection.cursor() as cursor:
-            # 建立資料庫
-            cursor.execute("CREATE DATABASE IF NOT EXISTS hhkone_resourceschool CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
-            print("✅ 資料庫 hhkone_resourceschool 建立成功")
-            
-            # 建立用戶並授權
-            cursor.execute("CREATE USER IF NOT EXISTS 'hhkone_resourceschool'@'%' IDENTIFIED BY 'C7W7sTvpuwrWQ2v2GV28'")
-            cursor.execute("GRANT ALL PRIVILEGES ON hhkone_resourceschool.* TO 'hhkone_resourceschool'@'%'")
-            cursor.execute("FLUSH PRIVILEGES")
-            print("✅ 用戶 hhkone_resourceschool 建立成功並授權")
+            # 檢查資料庫連接
+            cursor.execute("SELECT DATABASE()")
+            db_name = cursor.fetchone()[0]
+            print(f"✅ 成功連接到資料庫: {db_name}")
         
         connection.close()
         
     except Exception as e:
-        print(f"❌ 建立資料庫失敗: {e}")
+        print(f"❌ 連接資料庫失敗: {e}")
         return False
     
     return True
@@ -112,10 +109,10 @@ def main():
     print("\n" + "=" * 50)
     print("🎉 資料庫初始化完成！")
     print("\n📋 資料庫資訊:")
-    print("   - 資料庫名稱: hhkone_resourceschool")
-    print("   - 用戶名稱: hhkone_resourceschool")
-    print("   - 密碼: C7W7sTvpuwrWQ2v2GV28")
-    print("   - 主機: localhost:3306")
+    print("   - 資料庫名稱: zeabur")
+    print("   - 用戶名稱: root")
+    print("   - 密碼: 0h96Laxmn4Q57N2XBj8oepU1ysO3ErCT")
+    print("   - 主機: cgk1.clusters.zeabur.com:32188")
     print("\n🚀 現在可以啟動應用程式了！")
 
 if __name__ == "__main__":

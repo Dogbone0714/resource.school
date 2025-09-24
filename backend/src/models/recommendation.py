@@ -9,6 +9,7 @@ class Recommendation(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     upload_id = Column(Integer, ForeignKey("uploads.id"), nullable=True)
+    pdf_upload_id = Column(Integer, ForeignKey("pdf_uploads.id"), nullable=True)
     department = Column(String(255), nullable=False)
     university = Column(String(255))
     major = Column(String(255))
@@ -19,3 +20,4 @@ class Recommendation(Base):
     
     # 關聯
     user = relationship("User", back_populates="recommendations")
+    pdf_upload = relationship("PDFUpload", back_populates="recommendations")

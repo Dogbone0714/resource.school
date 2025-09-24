@@ -17,4 +17,5 @@ class User(Base):
     
     # 關聯
     uploads = relationship("Upload", back_populates="user")
+    pdf_uploads = relationship("PDFUpload", back_populates="user")
     recommendations = relationship("Recommendation", back_populates="user")
