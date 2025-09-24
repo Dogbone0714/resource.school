@@ -72,8 +72,8 @@ npm run dev
 ```
 
 ## 網域配置
-- **前端網域**: https://morago.com.tw
-- **API 網域**: https://api.morago.com.tw
+- **前端網域**: https://resouceschool.zeabur.app
+- **API 網域**: https://resouceschool.zeabur.app
 - **本地開發**: 
   - 前端: http://localhost:3000
   - 後端: http://localhost:8000

@@ -21,7 +21,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - VITE_API_URL=https://api.morago.com.tw
+      - VITE_API_URL=https://resouceschool.zeabur.app
     volumes:
       - ./frontend:/app
       - /app/node_modules

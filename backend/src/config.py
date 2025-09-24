@@ -18,8 +18,7 @@ ALLOWED_FILE_TYPES = [".json"]
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://frontend:3000", 
-    "https://morago.com.tw",
-    "https://www.morago.com.tw"
+    "https://resouceschool.zeabur.app"
 ]
 
 # 應用程式配置
