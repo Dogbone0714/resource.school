@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ApiService } from '../services/api';
 
+interface Recommendation {
+  department?: string;
+  university?: string;
+  major?: string;
+  score?: number;
+  reason?: string;
+}
+
 export default function ResultPage() {
-  const { userId } = useParams();
-  const [recommendations, setRecommendations] = useState([]);
+  const { userId } = useParams<{ userId: string }>();
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -16,10 +24,10 @@ export default function ResultPage() {
   const loadRecommendations = async () => {
     try {
       setLoading(true);
-      const data = await ApiService.getRecommendation(userId);
+      const data = await ApiService.getRecommendation(userId!);
       setRecommendations(data.recommendations || []);
       setError('');
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);

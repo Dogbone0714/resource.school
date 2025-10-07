@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiService } from '../services/api';
 
 export default function UploadPage() {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
     if (selectedFile && selectedFile.type === 'application/json') {
       setFile(selectedFile);
       setError('');
@@ -20,7 +20,7 @@ export default function UploadPage() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) {
       setError('請選擇要上傳的檔案');
@@ -35,7 +35,7 @@ export default function UploadPage() {
       const formData = new FormData();
       formData.append('file', file);
       
-      const result = await ApiService.uploadData(formData);
+      await ApiService.uploadData(formData);
       setSuccess('檔案上傳成功！');
       
       // 延遲跳轉到結果頁面
@@ -48,7 +48,7 @@ export default function UploadPage() {
         }
       }, 2000);
       
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
